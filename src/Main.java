@@ -112,7 +112,9 @@ class Calk extends Magazin {
 
     }
 }
-
+// enum class
+// ну типа он хочет tack менеджер-коекакер там надо использовать enum class, второстепенные задачи есть и основные типо того если все второстепенные задачи есть то передает основной задаче
+// готово, использовать
 class Shop {
 
     int prise;
@@ -146,6 +148,62 @@ class Shop {
     }
 
 }
+
+class Task{
+    enum progres{empty, medium, done}
+    private String task;
+    private int id;
+    public Task(String task, int id)
+    {
+        this.task = task;
+        this.id = id;//this problem moment
+    }
+
+    public int GetId()
+    {
+        return id;
+    }
+
+    public void SetTask()
+    {
+        this.task = task;
+    }
+
+    public void mainTask()
+    {
+        System.out.println("введите свои задачки");
+        Scanner scanner = new Scanner(System.in);
+        String nameTask = scanner.nextLine();
+
+    }
+}
+
+class Helper extends Task{
+
+    public Helper(String task, int id)
+    {
+        super(task, id);
+    }
+
+    public void underTask()
+    {
+        //give me value
+        System.out.println("дайть мне кол-во подзадач");
+        Scanner scanner = new Scanner(System.in);
+        int value  = scanner.nextInt();
+
+        String[] subtasks = new String[value];
+        for(int i = 0; i < value; i++)
+        {
+            System.out.println("введи последовательно подзадачи");
+            subtasks[i] = scanner.nextLine();
+        }
+
+
+    }
+
+}
+
 
 public class Main {
     public static void main(String[] args) {
