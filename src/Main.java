@@ -177,7 +177,6 @@ class Task{
 
     }
 }
-
 class Helper extends Task{
 
     public Helper(String task, int id)
@@ -203,11 +202,61 @@ class Helper extends Task{
     }
 
 }
+//есть главная задача затем подзадачи выносятся ниже затем табуляция
+//то есть под центральной задачей аккуратно выстраиваются подзадачи
+//и так последовательно
+//так же нужно сделать проверку на уникальность компаратор и хеш код нужен
+// Equals????
+class Task2
+{
+    //this terrible, I know)
+    //i dont must using public this -
+    public String task;
+    public int id;
+    public Task2(String task, int id)
+    {
+        this.task = task;
+        this.id = id;
+    }
+
+}
+
+class SubTask extends Task2{
+
+    public List<String> mySubtask = new ArrayList<>(10);
+
+    public SubTask(List<String> mySubtask, String task, int id){
+        super(task, id);
+        this.mySubtask = mySubtask;
+
+    }
+    public void Getter()
+    {
+        //user must get me task and subtack
+        id++;
+        Scanner scanner = new Scanner(System.in);
+        String InputUser = scanner.nextLine();
+        mySubtask.add(InputUser);
+
+    }
+}
+
+class GoodReturn extends SubTask
+{
+    public int For_what_me_this;
+
+    public GoodReturn(int For_what_me_this, List<String> mySubtask, String task, int id){
+        super(mySubtask, task, id);
+        this.For_what_me_this = For_what_me_this;
+    }
+
+
+}
 
 
 public class Main {
     public static void main(String[] args) {
-
+        //TODO I must finishing class GoodReturn And working witch Comparator
         Magazin ma = new Magazin("apple", 10);
         ma.setName("f12");
         Calk c = new Calk(3, "ff", 3);
