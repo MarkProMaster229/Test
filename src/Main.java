@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -225,9 +226,13 @@ class SubTask extends Task2{
 
     public List<String> mySubtask = new ArrayList<>(10);
 
-    public SubTask(List<String> mySubtask, String task, int id){
+    //this lazy list
+    public List<String> value = new ArrayList<String>(10);
+
+    public SubTask(List<String> mySubtask, String task, int id, List<String> value){
         super(task, id);
         this.mySubtask = mySubtask;
+        this.value = value;
 
     }
     public void Getter()
@@ -245,30 +250,64 @@ class GoodReturn extends SubTask
 {
     public int For_what_me_this;
 
-    public GoodReturn(int For_what_me_this, List<String> mySubtask, String task, int id){
-        super(mySubtask, task, id);
+    public GoodReturn(int For_what_me_this, List<String> mySubtask, String task, int id, List<String> value){
+        super(mySubtask, task, id, value);
         this.For_what_me_this = For_what_me_this;
     }
 
 
 }
 
+class MyComparator implements Comparator<SubTask> {
 
-public class Main {
-    public static void main(String[] args) {
-        //TODO I must finishing class GoodReturn And working witch Comparator
-        Magazin ma = new Magazin("apple", 10);
-        ma.setName("f12");
-        Calk c = new Calk(3, "ff", 3);
-        c.res();
+    @Override //я хз зачем переопределять его наврено чтоб
+    //конфликта не было хз не знаю вообщем))
 
-
-
-        Animal test = new Animal("cool head", 0, "long tail");
-
-        Cat cat = new Cat(true, "Cool Head", 4, "long tail", "Meow");
-        System.out.println(cat.sound());
-
-
+    public int compare(SubTask o1, SubTask o2) {
+        //а если у меня один лист че мне делать ? А если у меня три обьекта и более че делать
+        //хорошо, но мы имеем только один лист, но судя по задачи я должен использовать именно судью - компаратор?
+        //не комперебл который сравнивает себя с кем то, но постойте в любом случае я должен иметь два обьекта, хорошо создам фиктивный лист для того чтобы просто
+        //разобраться в сути работы компаратора, но для самого задания это не будет иметь смысла.
+        //был создан public List<String> value = new ArrayList<String>(10);
+        if (o1.id < o2.id) {
+            return -1;
+        } else if (o1.id > o2.id) {
+            return 1;
+        }
+        return 0;
     }
 }
+
+    public class Main {
+        public static void main(String[] args) {
+            //TODO I must finishing class GoodReturn And working witch Comparator
+            //TODO realization good struct witch get and set method
+            Magazin ma = new Magazin("apple", 10);
+            ma.setName("f12");
+            Calk c = new Calk(3, "ff", 3);
+            c.res();
+
+            MyComparator co = new MyComparator();
+
+            //типо сейчас я вызываю два одих и тех же обьекта SubTask
+            List<String> value = new ArrayList<String>(10);
+            SubTask s = new SubTask(value,"ggg",51,value);
+            SubTask s2 = new SubTask(value,"ggg",52,value);
+
+
+
+            if(co.compare(s,s2) == -1)
+            {
+                System.out.println("ttt");
+            }
+            else{
+                System.out.println("t2");
+            }
+
+
+            Animal test = new Animal("cool head", 0, "long tail");
+
+            Cat cat = new Cat(true, "Cool Head", 4, "long tail", "Meow");
+            System.out.println(cat.sound());
+        }
+    }
