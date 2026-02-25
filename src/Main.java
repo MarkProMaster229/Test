@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 class Animal {
     String head;
@@ -277,6 +274,108 @@ class MyComparator implements Comparator<SubTask> {
         return 0;
     }
 }
+abstract class Animal1 {
+    public String make() {
+        return "Звук";
+    }
+}
+
+class Cat1 extends Animal1 {
+    @Override
+    public String make()
+    {
+        return "Мяу";
+    }
+}
+
+// надо принцип солид применять и соответ добавить клиент и клиент должен запоминать свою задачу
+// использовать хеш меп ключем будет - задача цена будет как значение ютилс
+// класс превращат в абстракт класс  и добавить новый интерфейс
+
+// хорошо мне надо иметь три класса абсстрактный класс - задачи
+// у него будут поля ключ значение
+// потом будет абстрактный класс персон person в этом классе пусть будет главный и посредник
+// цена... цена.... цена... пусть будет в абстрактом классе задач
+// и того подытожим созать функцию цены, создать функцию персоны, создать функцию таск
+// для дальнешего переопределения
+// держать принципы солид(наверно)
+// все принципы солид были успешно мной нарушены
+// YAGNI
+
+//хорошо были так же созданы два класса которые наследуют абстрактный класс
+
+// ладно
+abstract class TaskAbs {
+    private Map<String, Integer> tasks;
+    int prise;
+    public List<String> value = new ArrayList<String>(10);
+
+
+    public TaskAbs(Map<String, Integer> tasks , int prise, List<String> value ) {
+        this.tasks = tasks;
+        this.prise = prise;
+        this.value = value;
+    }
+    public void myTask (){
+        System.out.println("stub");
+    }
+    public void mony(){
+        System.out.println("stub");
+    }
+}
+
+abstract class Person{
+    private String persona;
+
+    public Person(String persona)
+    {
+        this.persona = persona;
+    }
+    public void persona(String Persona)
+    {
+        this.persona = persona;
+    }
+}
+
+class TaskOrigin extends TaskAbs{
+
+    public TaskOrigin(Map<String, Integer> tasks , int prise, List<String> value)
+    {
+        super(tasks, prise, value);
+    }
+    @Override
+    public void myTask()
+    {
+        Scanner scanner = new Scanner(System.in);
+        String InputUser = scanner.nextLine();
+        for(int i = 0; i < 10; i++ ){
+            value.add(scanner.nextLine());
+        }
+    }
+    @Override
+    public void mony()
+    {
+        Scanner scanner = new Scanner(System.in);
+        this.prise = scanner.nextInt();
+    }
+}
+
+class PersonOrigin extends Person{
+
+
+    public PersonOrigin(String persona)
+    {
+        super(persona);
+    }
+
+    public void iKnow()
+    {
+
+
+    }
+}
+
+
 
     public class Main {
         public static void main(String[] args) {
